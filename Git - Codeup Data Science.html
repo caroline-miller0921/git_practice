@@ -1,0 +1,5277 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../../img/favicon.ico">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-8.0.3">
+    
+    
+      
+        <title>Git - Codeup Data Science</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.62128196.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.9204c3b2.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#8bc34b">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700%7CIBM+Plex+Mono&display=fallback">
+        <style>:root{--md-text-font:"Open Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../static-assets/dataframes.css">
+    
+      <link rel="stylesheet" href="../../static-assets/custom.css">
+    
+    <script>function __md_scope(e,t,_){return new URL(_||(t===localStorage?"../..":"../.."),location).pathname+"."+e}function __md_get(e,t=localStorage,_){return JSON.parse(t.getItem(__md_scope(e,t,_)))}function __md_set(e,t,_=localStorage,o){try{_.setItem(__md_scope(e,_,o),JSON.stringify(t))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-green" data-md-color-accent="deep-purple">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#version-control-with-git" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Codeup Data Science" class="md-header__button md-logo" aria-label="Codeup Data Science" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo" style="width: 100%;" />
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Codeup Data Science
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Git
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Codeup Data Science" class="md-nav__button md-logo" aria-label="Codeup Data Science" data-md-component="logo">
+      
+  <img src="../../img/logo.png" alt="logo" style="width: 100%;" />
+
+    </a>
+    Codeup Data Science
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        Table of Contents
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2">
+          Fundamentals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Fundamentals" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Fundamentals
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environment-setup/" class="md-nav__link">
+        Environment Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_2">
+          Data Science
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Science" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          Data Science
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro-to-data-science/" class="md-nav__link">
+        Intro to Data Science
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vocabulary/" class="md-nav__link">
+        DS Vocabulary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../data-science-pipeline/" class="md-nav__link">
+        Pipeline
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pipeline-demo/" class="md-nav__link">
+        Pipeline Demo
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_3" type="checkbox" id="__nav_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2_3">
+          Command Line
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Command Line" data-md-level="2">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Command Line
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/listing-files/" class="md-nav__link">
+        Listing Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/file-paths/" class="md-nav__link">
+        File Paths
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/navigating-the-filesystem/" class="md-nav__link">
+        Navigating the Filesystem
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/creating-files-and-directories/" class="md-nav__link">
+        Creating Files and Directories
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/moving-files/" class="md-nav__link">
+        Moving Files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/more-topics/" class="md-nav__link">
+        More Topics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Git
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Git
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-version-control" class="md-nav__link">
+    What is Version Control?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#so-what-why-should-you-care-about-git" class="md-nav__link">
+    So what? Why should you care about Git?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-vocabulary-and-concepts" class="md-nav__link">
+    Key Vocabulary and Concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-repository-setup-the-github-first-approach" class="md-nav__link">
+    Initial Repository Setup (the GitHub First Approach)
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Repository Setup (the GitHub First Approach)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flowchart-for-initial-repository-setup" class="md-nav__link">
+    Flowchart for Initial Repository Setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regular-workflow-with-git" class="md-nav__link">
+    Regular Workflow with Git
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-are-we-again" class="md-nav__link">
+    Where are we again?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-github" class="md-nav__link">
+    Configuring GitHub
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email-and-name" class="md-nav__link">
+    Email and Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-gitignore-file" class="md-nav__link">
+    Global gitignore File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-resources" class="md-nav__link">
+    Further Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercises">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-setup-exercises" class="md-nav__link">
+    Configuration setup exercises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-hello_world-repository-and-orient-yourself" class="md-nav__link">
+    Make a Hello_World repository and orient yourself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-files-in-your-hello_world-repository" class="md-nav__link">
+    Adding to files in your Hello_World Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-for-removing-content-from-files-in-hello_world" class="md-nav__link">
+    Exercise for removing content from files in Hello_World
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-to-setup-or-restore-a-repository-from-github" class="md-nav__link">
+    Exercise to setup or restore a repository from GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-profile-readme-repo" class="md-nav__link">
+    Make a Profile README repo
+  </a>
+  
+    <nav class="md-nav" aria-label="Make a Profile README repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-repository-for-your-notes" class="md-nav__link">
+    Create a repository for your notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitignore-exercises" class="md-nav__link">
+    Gitignore Exercises
+  </a>
+  
+    <nav class="md-nav" aria-label="Gitignore Exercises">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-exercise-1" class="md-nav__link">
+    Gitignore Exercise 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-exercise-2" class="md-nav__link">
+    Gitignore Exercise 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-exercise-3" class="md-nav__link">
+    Gitignore Exercise 3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Tools
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tools" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Tools
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1" type="checkbox" id="__nav_3_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/mysql-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/mysql-introduction/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/databases/" class="md-nav__link">
+        Databases
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/tables/" class="md-nav__link">
+        Tables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/basic-statements/" class="md-nav__link">
+        Basic Statements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_6" type="checkbox" id="__nav_3_1_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_6">
+          Clauses
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Clauses" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_6">
+          <span class="md-nav__icon md-icon"></span>
+          Clauses
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/clauses-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/where/" class="md-nav__link">
+        Where
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/order-by/" class="md-nav__link">
+        Order By
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/limit/" class="md-nav__link">
+        Limit
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/group-by/" class="md-nav__link">
+        Group By
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_1_9" type="checkbox" id="__nav_3_1_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1_9">
+          Relationships
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Relationships" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_1_9">
+          <span class="md-nav__icon md-icon"></span>
+          Relationships
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/relationships-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/indexes/" class="md-nav__link">
+        Indexes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/joins/" class="md-nav__link">
+        Joins
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/subqueries/" class="md-nav__link">
+        Subqueries
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/temporary-tables/" class="md-nav__link">
+        Temporary Tables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/case-statements/" class="md-nav__link">
+        Case Statements
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/more-exercises/" class="md-nav__link">
+        More exercises
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_2" type="checkbox" id="__nav_3_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/introduction-to-python/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/data-types-and-variables/" class="md-nav__link">
+        Data Types, Operators, and Variables
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/control-structures/" class="md-nav__link">
+        Control Structures
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/imports/" class="md-nav__link">
+        Imports
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3" type="checkbox" id="__nav_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3">
+          Data Science Libraries
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Data Science Libraries" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          Data Science Libraries
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/ds-libraries-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/intro-to-numpy/" class="md-nav__link">
+        numpy
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_3_3" type="checkbox" id="__nav_3_3_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3_3">
+          pandas
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="pandas" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          pandas
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pandas-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/series/" class="md-nav__link">
+        Series
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/dataframes/" class="md-nav__link">
+        Dataframes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/advanced-dataframes/" class="md-nav__link">
+        Advanced Dataframes
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/intro-to-matplotlib/" class="md-nav__link">
+        matplotlib
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/intro-to-seaborn/" class="md-nav__link">
+        seaborn
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4" type="checkbox" id="__nav_3_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4">
+          Stats
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Stats" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          Stats
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/simulation/" class="md-nav__link">
+        Simulation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/probability-distributions/" class="md-nav__link">
+        Probability Distributions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_4_4" type="checkbox" id="__nav_3_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4_4">
+          Hypothesis Testing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Hypothesis Testing" data-md-level="3">
+        <label class="md-nav__title" for="__nav_3_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Hypothesis Testing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/hypothesis-testing-overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/compare-means/" class="md-nav__link">
+        Comparison of Means
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/correlation/" class="md-nav__link">
+        Correlation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/compare-group-membership/" class="md-nav__link">
+        Comparison of Groups
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/more-statistical-testing-examples/" class="md-nav__link">
+        More Examples
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3_5" type="checkbox" id="__nav_3_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5">
+          Tableau
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Tableau" data-md-level="2">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          Tableau
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/tableau/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/connecting-to-data/" class="md-nav__link">
+        Connecting to Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/creating-custom-fields/" class="md-nav__link">
+        Creating Custom Fields
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/creating-charts/" class="md-nav__link">
+        Creating Charts
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/creating-dashboards/" class="md-nav__link">
+        Creating Dashboards
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/creating-stories/" class="md-nav__link">
+        Creating Stories
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Methodologies I
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Methodologies I" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Methodologies I
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1" type="checkbox" id="__nav_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1">
+          Classification
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Classification" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Classification
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/acquire/" class="md-nav__link">
+        Data Acquisition
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/prep/" class="md-nav__link">
+        Data Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/tidy-data/" class="md-nav__link">
+        Tidy Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/explore/" class="md-nav__link">
+        Exploratory Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/evaluation/" class="md-nav__link">
+        Evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_7" type="checkbox" id="__nav_4_1_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_7">
+          Modeling
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Modeling" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_7">
+          <span class="md-nav__icon md-icon"></span>
+          Modeling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/decision-trees/" class="md-nav__link">
+        Decision Tree
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/random-forests/" class="md-nav__link">
+        Random Forest
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/knn/" class="md-nav__link">
+        KNN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/logistic-regression/" class="md-nav__link">
+        Logistic Regression
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/user-defined-functions/" class="md-nav__link">
+        User-Defined Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/project/" class="md-nav__link">
+        Project Part 1 - Report
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_1_10" type="checkbox" id="__nav_4_1_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_1_10">
+          Storytelling
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storytelling" data-md-level="3">
+        <label class="md-nav__title" for="__nav_4_1_10">
+          <span class="md-nav__icon md-icon"></span>
+          Storytelling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/overview/" class="md-nav__link">
+        About Storytelling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/understand/" class="md-nav__link">
+        Understand What Makes a Good Story
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/create/" class="md-nav__link">
+        Creating the Story
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/refine-present/" class="md-nav__link">
+        Refine & Present
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/project_classification_story/" class="md-nav__link">
+        Project Part 2 - Story
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Regression
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Regression" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Regression
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/acquire-and-prep/" class="md-nav__link">
+        Acquisition and Prep
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/split-and-scale/" class="md-nav__link">
+        Scaling Numeric Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/explore/" class="md-nav__link">
+        Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/evaluate/" class="md-nav__link">
+        Evaluating Regression Models
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/feature-engineering/" class="md-nav__link">
+        Feature Engineering
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/model/" class="md-nav__link">
+        Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_3">
+          Clustering
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Clustering" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Clustering
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/wrangle/" class="md-nav__link">
+        Data Wrangling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/explore/" class="md-nav__link">
+        Exploratory Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/model/" class="md-nav__link">
+        Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/using-clusters/" class="md-nav__link">
+        Using Clusters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_4" type="checkbox" id="__nav_4_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_4">
+          Time Series
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Time Series" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_4">
+          <span class="md-nav__icon md-icon"></span>
+          Time Series
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/quick_fix_acquire/" class="md-nav__link">
+        Data Acquisition
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/working-with-time-series-data/" class="md-nav__link">
+        Working with Time Series Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/prep/" class="md-nav__link">
+        Data Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/explore/" class="md-nav__link">
+        Exploratory Analysis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/modeling-lesson1/" class="md-nav__link">
+        Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_5" type="checkbox" id="__nav_4_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_5">
+          Individual Project
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Individual Project" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_5">
+          <span class="md-nav__icon md-icon"></span>
+          Individual Project
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../individual-project/individual-project/" class="md-nav__link">
+        Individual Project Spec
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Methodologies II
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Methodologies II" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Methodologies II
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" type="checkbox" id="__nav_5_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_1">
+          Anomaly Detection
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Anomaly Detection" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_1">
+          <span class="md-nav__icon md-icon"></span>
+          Anomaly Detection
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anomaly-detection/overview/" class="md-nav__link">
+        About Anomaly Detection
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anomaly-detection/continuous-probabilistic-methods/" class="md-nav__link">
+        Continuous Probabilistic Methods
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anomaly-detection/discrete-probabilistic-methods/" class="md-nav__link">
+        Discrete Probabilistic Methods
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anomaly-detection/time-series-anomaly-detector/" class="md-nav__link">
+        Detect Timeseries Anomalies
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../anomaly-detection/detecting-with-clustering/" class="md-nav__link">
+        Detect Through Clustering
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" type="checkbox" id="__nav_5_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_2">
+          NLP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NLP" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_2">
+          <span class="md-nav__icon md-icon"></span>
+          NLP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/overview/" class="md-nav__link">
+        About NLP
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/regular-expressions/" class="md-nav__link">
+        Regular Expressions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/acquire/" class="md-nav__link">
+        Data Acquisition
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/prepare/" class="md-nav__link">
+        Data Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/explore/" class="md-nav__link">
+        Data Exploration
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/model/" class="md-nav__link">
+        Modeling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/project/" class="md-nav__link">
+        Project
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_3" type="checkbox" id="__nav_5_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_3">
+          Distributed ML
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Distributed ML" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_3">
+          <span class="md-nav__icon md-icon"></span>
+          Distributed ML
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributed-ml/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributed-ml/environment-setup/" class="md-nav__link">
+        Environment Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributed-ml/spark-api/" class="md-nav__link">
+        Spark API
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributed-ml/wrangle/" class="md-nav__link">
+        Data Wrangling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4" type="checkbox" id="__nav_5_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4">
+          Additional Topics
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Additional Topics" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_4">
+          <span class="md-nav__icon md-icon"></span>
+          Additional Topics
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4_1" type="checkbox" id="__nav_5_4_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4_1">
+          Spreadsheets
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Spreadsheets" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_4_1">
+          <span class="md-nav__icon md-icon"></span>
+          Spreadsheets
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spreadsheets/overview/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spreadsheets/functions/" class="md-nav__link">
+        Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../spreadsheets/visualization/" class="md-nav__link">
+        Visualizations
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/cross-validation/" class="md-nav__link">
+        Cross Validation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_4_3" type="checkbox" id="__nav_5_4_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_4_3">
+          Developing Data Products
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Developing Data Products" data-md-level="3">
+        <label class="md-nav__title" for="__nav_5_4_3">
+          <span class="md-nav__icon md-icon"></span>
+          Developing Data Products
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/developing-data-products/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/virtual-environments/" class="md-nav__link">
+        Virtual Environments
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/building-a-model/" class="md-nav__link">
+        Building A Model
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/intro-to-flask/" class="md-nav__link">
+        Flask Intro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/html-templates/" class="md-nav__link">
+        HTML Templates
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/html-forms/" class="md-nav__link">
+        HTML Forms
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/styling-webpages/" class="md-nav__link">
+        Styling Webpages
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/json-responses/" class="md-nav__link">
+        JSON Responses
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../advanced-topics/deep-learning/" class="md-nav__link">
+        Deep Learning
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_5" type="checkbox" id="__nav_5_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5_5">
+          Capstones
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Capstones" data-md-level="2">
+        <label class="md-nav__title" for="__nav_5_5">
+          <span class="md-nav__icon md-icon"></span>
+          Capstones
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../capstones/capstones/" class="md-nav__link">
+        Capstones
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Appendix
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Appendix" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Appendix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/postwork/" class="md-nav__link">
+        Post Work
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" type="checkbox" id="__nav_6_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2">
+          Further Reading
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Further Reading" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_2">
+          <span class="md-nav__icon md-icon"></span>
+          Further Reading
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_1" type="checkbox" id="__nav_6_2_1" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_1">
+          Git
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Git" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          Git
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/git-local-setup/" class="md-nav__link">
+        Local First Repo Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/git-teamwork/" class="md-nav__link">
+        Git Teamwork
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/git-branching/" class="md-nav__link">
+        Git Branching
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_2" type="checkbox" id="__nav_6_2_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_2">
+          SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="SQL" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          SQL
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sql/database-design/" class="md-nav__link">
+        Database Design
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_3" type="checkbox" id="__nav_6_2_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_3">
+          Python
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Python" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/intro-to-sklearn/" class="md-nav__link">
+        Sci-Kit Learn
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/matplotlib-styles/" class="md-nav__link">
+        Matplotlib Stlyes
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/objects/" class="md-nav__link">
+        Object Oriented Programming
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/error-handling/" class="md-nav__link">
+        Error Handling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/type-annotations/" class="md-nav__link">
+        Type Annotations
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/custom-sorting-functions/" class="md-nav__link">
+        Custom Sorting Functions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/testing-code/" class="md-nav__link">
+        Testing Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/handling-duplicate-values/" class="md-nav__link">
+        Handling Duplicate Values
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/pandas-time-series/" class="md-nav__link">
+        Pandas Time Series
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/project/" class="md-nav__link">
+        Python Checkbook Project
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../python/working-with-files/" class="md-nav__link">
+        Working With Files
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_4" type="checkbox" id="__nav_6_2_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_4">
+          Storytelling
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Storytelling" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          Storytelling
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../storytelling/bad-charts/" class="md-nav__link">
+        Bad Charts
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_5" type="checkbox" id="__nav_6_2_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_5">
+          Stats
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Stats" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_5">
+          <span class="md-nav__icon md-icon"></span>
+          Stats
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/sampling/" class="md-nav__link">
+        Sampling
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/probability-and-event-interactions/" class="md-nav__link">
+        Probability
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/distributions-and-testing/" class="md-nav__link">
+        Distributions and Tests
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../stats/power-analysis/" class="md-nav__link">
+        Power Analysis
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_6" type="checkbox" id="__nav_6_2_6" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_6">
+          Regression
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Regression" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          Regression
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/built-in-datasets/" class="md-nav__link">
+        Built-in Datasets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/ridge-regression/" class="md-nav__link">
+        Ridge Regression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/least-angle-regression/" class="md-nav__link">
+        Least Angle Regression
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/univariate_regression_in_excel/" class="md-nav__link">
+        Univariate Regression in Excel
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../regression/multivariate-regression-in-excel/" class="md-nav__link">
+        Multivariate Regression in Excel
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_7" type="checkbox" id="__nav_6_2_7" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_7">
+          Classification
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Classification" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_7">
+          <span class="md-nav__icon md-icon"></span>
+          Classification
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/svm/" class="md-nav__link">
+        SVM
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/ensemble/" class="md-nav__link">
+        Ensemble
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../classification/confusion-matrix/" class="md-nav__link">
+        Confusion Matrix
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_8" type="checkbox" id="__nav_6_2_8" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_8">
+          Clustering
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Clustering" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          Clustering
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/review.md" class="md-nav__link">
+        Review
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/dbscan.md" class="md-nav__link">
+        DBSCAN
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../clustering/hierarchical.md" class="md-nav__link">
+        Hierarchical
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_9" type="checkbox" id="__nav_6_2_9" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_9">
+          Time Series Analysis
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Time Series Analysis" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_9">
+          <span class="md-nav__icon md-icon"></span>
+          Time Series Analysis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/working-with-time-series-data-with-pandas/" class="md-nav__link">
+        Pandas Time Series
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/svr/" class="md-nav__link">
+        SVR
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/sarimax/" class="md-nav__link">
+        SARIMAX
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_10" type="checkbox" id="__nav_6_2_10" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_10">
+          NLP
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="NLP" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_10">
+          <span class="md-nav__icon md-icon"></span>
+          NLP
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../nlp/topic-modeling/" class="md-nav__link">
+        Topic Modeling
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2_11" type="checkbox" id="__nav_6_2_11" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_2_11">
+          Distributed ML
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Distributed ML" data-md-level="3">
+        <label class="md-nav__title" for="__nav_6_2_11">
+          <span class="md-nav__icon md-icon"></span>
+          Distributed ML
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributed-ml/read-jdbc/" class="md-nav__link">
+        Reading From a MySQL Database
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../distributed-ml/ml-with-spark/" class="md-nav__link">
+        Machine Learning with Spark
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_3" type="checkbox" id="__nav_6_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_3">
+          Professional Development
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Professional Development" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          Professional Development
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/cover-letter-copy/" class="md-nav__link">
+        Cover Letters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/email-setup/" class="md-nav__link">
+        Email Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/interview-guidance/" class="md-nav__link">
+        Interview Guidance
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/interview-questions-behavioral/" class="md-nav__link">
+        Interview Questions-Behavioral
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/interview-questions-tech/" class="md-nav__link">
+        Interview Questions-Technical
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/linkedin-tips/" class="md-nav__link">
+        Linkedin Tips
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/offer-letters/" class="md-nav__link">
+        Offer Letters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/professionalism-101/" class="md-nav__link">
+        Professionalism 101
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/t-block-lesson-ds/" class="md-nav__link">
+        T Block Resume
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/tech-talk/" class="md-nav__link">
+        Tech Talks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/vertical-resume/" class="md-nav__link">
+        Vertical Resume
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/professional-development/virtual-meeting-tips-and-tricks/" class="md-nav__link">
+        Virtual Meeting Tips and Tricks
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/trello/" class="md-nav__link">
+        Trello
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/documentation/" class="md-nav__link">
+        Documentation and README files
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/data_science_community/" class="md-nav__link">
+        Data Science Community
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/data-viz-references/" class="md-nav__link">
+        Data Viz Resources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/open_data/" class="md-nav__link">
+        Open Data Sources
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/ds-environment-setup/" class="md-nav__link">
+        Environment Setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/useful_libraries/" class="md-nav__link">
+        Useful Libraries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/vocabulary/" class="md-nav__link">
+        Vocabulary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_12" type="checkbox" id="__nav_6_12" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6_12">
+          Questions from the Coding Challenge Meetup
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Questions from the Coding Challenge Meetup" data-md-level="2">
+        <label class="md-nav__title" for="__nav_6_12">
+          <span class="md-nav__icon md-icon"></span>
+          Questions from the Coding Challenge Meetup
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/coding-challenges/" class="md-nav__link">
+        Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/coding-challenges/amateur/" class="md-nav__link">
+        Amateur
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/coding-challenges/intermediate/" class="md-nav__link">
+        Intermediate
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../appendix/coding-challenges/professional/" class="md-nav__link">
+        Professional
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-is-version-control" class="md-nav__link">
+    What is Version Control?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#so-what-why-should-you-care-about-git" class="md-nav__link">
+    So what? Why should you care about Git?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-vocabulary-and-concepts" class="md-nav__link">
+    Key Vocabulary and Concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#initial-repository-setup-the-github-first-approach" class="md-nav__link">
+    Initial Repository Setup (the GitHub First Approach)
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Repository Setup (the GitHub First Approach)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#flowchart-for-initial-repository-setup" class="md-nav__link">
+    Flowchart for Initial Repository Setup
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#regular-workflow-with-git" class="md-nav__link">
+    Regular Workflow with Git
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#where-are-we-again" class="md-nav__link">
+    Where are we again?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuring-github" class="md-nav__link">
+    Configuring GitHub
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuring GitHub">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#email-and-name" class="md-nav__link">
+    Email and Name
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-gitignore-file" class="md-nav__link">
+    Global gitignore File
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#further-resources" class="md-nav__link">
+    Further Resources
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exercises" class="md-nav__link">
+    Exercises
+  </a>
+  
+    <nav class="md-nav" aria-label="Exercises">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-setup-exercises" class="md-nav__link">
+    Configuration setup exercises
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-hello_world-repository-and-orient-yourself" class="md-nav__link">
+    Make a Hello_World repository and orient yourself
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#adding-to-files-in-your-hello_world-repository" class="md-nav__link">
+    Adding to files in your Hello_World Repository
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-for-removing-content-from-files-in-hello_world" class="md-nav__link">
+    Exercise for removing content from files in Hello_World
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exercise-to-setup-or-restore-a-repository-from-github" class="md-nav__link">
+    Exercise to setup or restore a repository from GitHub
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#make-a-profile-readme-repo" class="md-nav__link">
+    Make a Profile README repo
+  </a>
+  
+    <nav class="md-nav" aria-label="Make a Profile README repo">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-repository-for-your-notes" class="md-nav__link">
+    Create a repository for your notes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gitignore-exercises" class="md-nav__link">
+    Gitignore Exercises
+  </a>
+  
+    <nav class="md-nav" aria-label="Gitignore Exercises">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-exercise-1" class="md-nav__link">
+    Gitignore Exercise 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-exercise-2" class="md-nav__link">
+    Gitignore Exercise 2
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gitignore-exercise-3" class="md-nav__link">
+    Gitignore Exercise 3
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+<h1 id="version-control-with-git">Version Control with Git</h1>
+<h2 id="what-is-version-control">What is Version Control?</h2>
+<p>Version Control means to track, monitor, and manage changes. One version control system you likely have seen before is the "Version History" on a Google Doc or the "Track Changes" feature on Microsoft Office documents. Another type of version control is manually naming files with numbers or context like <code>resume.pdf</code>, <code>resume2.pdf</code>, or <code>resume_final.pdf</code>. Track changes and manual file names are types of version control, but code and its documentation are more rich and benefit from more powerful tools. </p>
+<p>So what is Git? Git is a permanent record with a time machine and parallel universes. </p>
+<table>
+<thead>
+<tr>
+<th>Git is a permanent record for source code</th>
+<th>with a time machine</th>
+<th>and parallel universes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><img alt="permanent record" src="../permanent_record.jpg" /></td>
+<td><img alt="back to the future time machine" src="../time_machine_300_wide.jpg" /></td>
+<td><img alt="multiverse" src="../parallel_universe_300_wide.jpg" /></td>
+</tr>
+</tbody>
+</table>
+<p>The analogies are helpful, but what is git, actually? Git is a distributed version control system. It is a formalized way to keep track of changes, and allows its users to view changes over time. Version control systems allow us to track changes in files, and <a href="https://git-scm.com/">Git</a> is the most popular version control system for source code and software projects.</p>
+<blockquote>
+<p>"Git is a free and open source distributed version control system designed to handle everything from small to very large projects with speed and efficiency." - <a href="https://git-scm.com/">Git documentation</a></p>
+</blockquote>
+<h2 id="so-what-why-should-you-care-about-git">So what? Why should you care about Git?</h2>
+<p>Software developers, data scientists, and infrastructure teams use version control to keep track of changes and different features in software, analysis, environments, or documentation. Version control is important because a backups are one thing and carefully maintained version histories among one or multiple versions is another thing entirely. </p>
+<p>Think of all the different versions of operating systems like <code>version 10.18.1</code> of the Mac OS, <code>Version 2 of Windows 11 Pro</code>, or any number of Linux distrubutions. Recognize that each version of a piece of software is made up of its own set of facts, its source code. </p>
+<p>Each different version of source code or documentation is a different body of facts. Git tracks facts and allows us to names and explanations to those sets of facts. </p>
+<p><a href="https://github.com/">GitHub</a> (and sites like GitLab or BitBucket) is a web application that makes it visually easy to review code, compare different versions, and collaborate.</p>
+<h2 id="key-vocabulary-and-concepts">Key Vocabulary and Concepts</h2>
+<ul>
+<li><strong>local</strong>: means your computer, your laptop or desktop.</li>
+<li><strong>remote</strong>: means another computer, a server, or service (like GitHub) where you back up your code and push changes.</li>
+<li><strong>repository</strong>: a directory managed by git.</li>
+<li><strong>add</strong>: to tell git which files we wish to look at for the next commit. Adding files is like putting documents in an envelope.</li>
+<li><strong>commit</strong>: to create a "save point", to formally take a snapshot of a repository. Commiting means sealing the envelope w/ your own wax seal and a timestamp. Think of commits like hard save points.</li>
+<li><strong>push</strong>: to copy the state of a local repository elsewhere, most commonly, to
+  send your work with github. Pushing means uploading.</li>
+<li><strong>clone</strong>: to copy an entire repository's content along with the fact that the folder is a repository.</li>
+</ul>
+<h2 id="initial-repository-setup-the-github-first-approach">Initial Repository Setup (the GitHub First Approach)</h2>
+<ol>
+<li>Go to https://github.com/new and create a new repository on your GitHub account. For our purposes, ignore all the checkboxes and keep your repo public. This creates an empty repository on your GitHub account.</li>
+<li>Once the repository is set up, copy the SSH link to your clipboard.</li>
+</ol>
+<p><img alt="how to find the ssh link" src="../getting_the_ssh_link.png" /></p>
+<ol>
+<li>
+<p>Navigate to the parent folder that will contain your new repository. In our case, we'll need to create this parent folder first. To do this open up your terminal and run <code>mkdir ~/codeup-data-science</code> then <code>cd ~/codeup-data-science</code>. Your <code>codeup-data-science</code> folder will contain all of the different repositories for exercises and projects you will complete at Codeup.</p>
+</li>
+<li>
+<p>Now that you are in your <code>~/codeup-data-science/</code> folder, type <code>git clone</code> followed by a space character, and then paste the SSH git address of your repository and hit enter. Paste into your terminal with <code>command V</code>.</p>
+</li>
+</ol>
+<p><img alt="image of cloning a repo to your computer" src="../terminal-clone-command.png" /></p>
+<ol>
+<li>From your <code>~/codeup-data-science</code> folder, run <code>ls</code> and you will see that cloning made the new folder/repo as a subfolder. Then, we will move into your new repo with <code>cd example_git_repo</code>. </li>
+<li>If you run <code>ls -la</code> in your new repo, you will see that there is only a <code>.git</code> folder (which is for git's internals) and nothing else.</li>
+<li>If you run <code>git status</code>, you'll see that you are on a default branch and have no commits yet.</li>
+<li>To confirm that this new repository points to GitHub appropriately, type <code>git remote -v</code>. The output of this command will show that the remote, called <code>origin</code> points to GitHub.</li>
+<li>Congratulations! You now have a repository in GitHub that is cloned down to your laptop. The flowchart below diagrams and annotates this process. The next step is to move into our regular workflow of do work, add, commit, and push (see below).</li>
+</ol>
+<h3 id="flowchart-for-initial-repository-setup">Flowchart for Initial Repository Setup</h3>
+<p><img alt="first time github setup diagram" src="../first-time-setup-github-first.png" /></p>
+<h2 id="regular-workflow-with-git">Regular Workflow with Git</h2>
+<p>Now that you have a repository created on both your computer and GitHub, it's time to start doing work.</p>
+<p>Here's the short version for your regular, daily Git workflow:</p>
+<ol>
+<li>
+<p>Do work (add files, edit files, deleting files, renaming files, etc..) in a repository.</p>
+</li>
+<li>
+<p>Add your work with <code>git add filename.py</code> or <code>git add .</code> to add everything in a folder.</p>
+</li>
+<li>
+<p>Commit your work like  <code>git commit -m "adding this file"</code></p>
+</li>
+<li>
+<p>Push your work with <code>git push</code> (this uploads all new commits to GitHub) </p>
+</li>
+</ol>
+<blockquote>
+<p>If your code ain't in GitHub then it doesn't exist. Always add, commit, and push your work, every day. </p>
+</blockquote>
+<p><img alt="Diagram for daily git workflow" src="../regular-git-workflow.png" /></p>
+<blockquote>
+<p>If your code ain't in GitHub then it doesn't exist. Always add, commit, and push your work, every day.  </p>
+</blockquote>
+<h2 id="where-are-we-again">Where are we again?</h2>
+<ul>
+<li>Creating a repository on GitHub and your computer is the first step.</li>
+<li>Regularly adding, commiting, and pushing your work is our daily routine to make backups and save points.</li>
+<li>Cloning a repo first is one way to setup a repository. Another method is to initialize the repo your laptop first and that process is documented in the <a href="https://ds.codeup.com/appendix/git-local-setup">curriculum appendix</a>. This involves a few more steps, but some people prefer this approach. </li>
+<li>Later in the course, we will work with <a href="https://ds.codeup.com/appendix/git-teamwork/">Git for teamwork</a> and that curriculum is in the appendix.</li>
+</ul>
+<h2 id="configuring-github">Configuring GitHub</h2>
+<p>There are <a href="https://git-scm.com/docs/git-config#_variables">many different options we can tweak to change git's
+behavior</a>, but at the very least, we should setup two things: our name and email, and a global gitignore
+file.</p>
+<p>All of our configuration can be changed through the <code>config</code> git subcommand, as well as by editing the <code>~/.gitconfig</code> file.</p>
+<h3 id="email-and-name">Email and Name</h3>
+<p>We need to tell git who we are. This configuration will default to whatever git
+can find out about you based on your Mac's configuration, but we can tell git
+specifically who we are</p>
+<div class="highlight"><pre><span></span><code>git config --global user.name &quot;Your Name&quot;
+git config --global user.email you@example.com
+</code></pre></div>
+<h3 id="global-gitignore-file">Global <code>gitignore</code> File</h3>
+<p>We can also setup a <em>global <code>.gitignore</code> file</em>. This file will tell git to
+ignore certain files system wide, in addition to any files found in a project
+specific <code>.gitignore</code>.</p>
+<p>Since we are using MacOS, it would be wise to tell git that we wish to never
+track <code>.DS_Store</code> files. These files are autogenerated by Finder whenever a
+directory is opened, and won't pertain to any of our projects.</p>
+<p>The command below will create a file named <code>.gitignore_global</code> with a line in it
+that specifies <code>.DS_Store</code> files to be ignored</p>
+<div class="highlight"><pre><span></span><code>echo &#39;.DS_Store&#39; &gt;&gt; ~/.gitignore_global
+</code></pre></div>
+<p>Now we can tell git that we should use this file to globally ignore files.</p>
+<div class="highlight"><pre><span></span><code>git config --global core.excludesfile ~/.gitignore_global
+</code></pre></div>
+<h2 id="further-resources">Further Resources</h2>
+<ul>
+<li><a href="https://git-scm.com/">Official Git Website</a></li>
+<li><a href="https://try.github.io/">Github's Resource List for Learning git</a></li>
+<li><a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">Tim Pope on Commit Messages</a></li>
+<li><a href="https://www.youtube.com/watch?v=L7vzPm3_Im8">Create a Local Git Repository and Push to GitHub</a></li>
+<li><a href="https://www.youtube.com/watch?v=orp03xihHso">Intro to Using Gitignore to Have Git Ignore Sensitive Files</a></li>
+</ul>
+<h2 id="exercises">Exercises</h2>
+<h5 id="configuration-setup-exercises">Configuration setup exercises</h5>
+<p><strong>COMPLETE ABSOLUTELY EVERY ONE OF THESE EXERCISES OR IT WILL HARM YOU LATER</strong></p>
+<ol>
+<li>Setup your global Git configuration.<ul>
+<li>Run <code>git config --global pull.rebase false</code> to set a helpful default.</li>
+<li>Run <code>git config --global user.name "Your Name"</code> with your full name in the quotation marks.</li>
+<li>Run<code>git config --global user.email you@example.com</code> with the email address associated w/ GitHub.</li>
+</ul>
+</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title">Set your git config to use the email address associated with your GitHub account</p>
+<p>Make sure that the email address and name you provide on the command
+line matches exactly what you provided to GitHub, otherwise you won't
+get credit for your commits. This is the email address of your GitHub account.</p>
+</div>
+<ol>
+<li>Run the following commands to ensure that your user information is correct. </li>
+<li>Running <code>git config --global user.name</code>  should return your first and last name.</li>
+<li>
+<p>Running <code>git config --global user.email</code> should return the email address associated with your GitHub account.</p>
+</li>
+<li>
+<p>Set up your default branch name <code>git config --global init.defaultBranch main</code>. Like many command line commands, successfully running this command produces no output. </p>
+</li>
+<li>
+<p>Create a directory named <code>codeup-data-science</code> within your home directory. This
+    will be where you do all of your work at codeup.</p>
+</li>
+<li>
+<p>Double check that your <code>~/codeup-data-science</code> directory exists in the appropriate place.</p>
+</li>
+<li>Open up Finder</li>
+<li><code>Command + Shift + H</code> keyboard shortcut will navigate you to your home directory. </li>
+<li>Your home directory should list <code>Desktop</code>, <code>Downloads</code>, other folders, as well as <code>codeup-data-science</code>.</li>
+<li>Click and drag your <code>codeup-data-science</code> folder to the left-hand menu of Finder to add this folder as a Finder favorite.</li>
+</ol>
+<h5 id="make-a-hello_world-repository-and-orient-yourself">Make a <code>Hello_World</code> repository and orient yourself</h5>
+<ul>
+<li>
+<p>Using the directions above, create a repository on GitHub called Hello_World.</p>
+</li>
+<li>
+<p><code>cd ~/codeup-data-science</code> and then clone your repo here.</p>
+</li>
+<li>
+<p><code>cd ~/codeup-data-science/Hello_World</code></p>
+</li>
+<li>
+<p>Orienting yourself with your new repository and its parent folder</p>
+</li>
+<li>
+<p>Type <code>git status</code>. What do you see? Does this make sense?</p>
+</li>
+<li>Type <code>ls -l</code>. What do you see? Does this make sense? Why/why not?</li>
+<li>Type <code>ls -la</code>.  What do you see? Does this make sense? Why/why not?</li>
+<li>Type <code>cd ..</code> to navigate to the parent folder<ul>
+<li>From the parent folder, type <code>pwd</code>. What is your current working directory?</li>
+<li>Run <code>ls -la</code>. What do you see?</li>
+<li>Run <code>git status</code>. What output do you see? Does this make sense or not?</li>
+</ul>
+</li>
+<li>
+<p>Return to <code>~/codeup-data-science/Hello_World</code> (remember the <code>cd</code> command). Type <code>pwd</code> to confirm.</p>
+</li>
+<li>
+<p>Do work:</p>
+</li>
+<li>
+<p>Create a file named <code>hello.txt</code> inside of your <code>~/codeup-data-science/Hello_World</code> repo.</p>
+<ul>
+<li>Use a code editor or the Mac application <code>TextEdit</code>.</li>
+</ul>
+</li>
+<li>The <code>hello.txt</code> file should have text  that says "Hello, World!" on the first line. Save the file.</li>
+<li>Now type <code>git status</code> from your terminal. What do you see?</li>
+<li>
+<p>Type <code>ls -la</code>. What do you see here?</p>
+</li>
+<li>
+<p>Adding files to git</p>
+</li>
+<li>
+<p>Now it's time to tell Git about your new file. Type <code>git add hello.txt</code></p>
+</li>
+<li>
+<p>Run <code>git status</code>. Read the output carefully and think about what changed.</p>
+</li>
+<li>
+<p>Commiting files</p>
+</li>
+<li>
+<p>Now it's time to commit your work. Type <code>git commit -m "added hello.txt"</code></p>
+</li>
+<li>
+<p>Now, type <code>git status</code> to see what changed.</p>
+</li>
+<li>
+<p>Push your work to GitHub</p>
+</li>
+<li>
+<p>Type <code>git push</code> and pay careful attention to the output messages.</p>
+</li>
+<li>
+<p>Go back to your browser and refresh the page for your repository</p>
+</li>
+<li>
+<p>Congratulations! You've made a repository, done work, added, commited, and pushed to GitHub!</p>
+</li>
+</ul>
+<h5 id="adding-to-files-in-your-hello_world-repository">Adding to files in your <code>Hello_World</code> Repository</h5>
+<ul>
+<li>From your <code>Hello_World</code> repository on your laptop, open <code>hello.txt</code> with VS Code or the Mac application <code>TextEdit</code>.</li>
+<li>On the second line, add a new line of text that says "Now I'm adding a second line of content" and save.</li>
+<li>From the terminal type <code>git status</code>. What do you see? What changed?</li>
+<li>Exploring new additions/changes with <code>git diff</code></li>
+<li>Now that you've added new content, run <code>git diff</code>. <ul>
+<li>We can run <code>git diff hello.txt</code> or for other specific filenames</li>
+<li>We can also run <code>git diff</code> to see all differences in any changed files.</li>
+</ul>
+</li>
+<li>Back in your editor, add a 3rd line of text to <code>hello.txt</code> that says "Adding a 3rd line of text"</li>
+<li>Return to your terminal and type <code>git diff</code>, reviewing the feedback.</li>
+<li>Add, commit, and push your work:</li>
+<li>Add your new work with <code>git add hello.txt</code></li>
+<li>Commit with <code>git commit -m "added 2 example lines of text"</code></li>
+<li>Now push to GitHub with <code>git push</code></li>
+<li>Review the changes on your <code>Hello_World</code> repo page on GitHub.</li>
+</ul>
+<h5 id="exercise-for-removing-content-from-files-in-hello_world">Exercise for removing content from files in <code>Hello_World</code></h5>
+<ul>
+<li>
+<p>Using VS Code or the <code>TextEdit</code> Mac application, open up your <code>hello.txt</code> file in your local <code>Hello_World</code> repo.</p>
+</li>
+<li>
+<p>Delete the 3rd line of text from <code>hello.txt</code> and save.</p>
+</li>
+<li>
+<p>From your terminal, type <code>git diff</code>. </p>
+</li>
+<li>
+<p>What do you notice? </p>
+</li>
+<li>
+<p>How does this compare to the <code>git diff</code> you ran earlier when adding content?</p>
+</li>
+<li>
+<p>Run <code>git add hello.txt</code> to add these changes.</p>
+</li>
+<li>
+<p>Now type <code>git commit -m "Removed 3rd line of text"</code> to commit.</p>
+</li>
+<li>
+<p>Push your work with <code>git push</code></p>
+</li>
+<li>
+<p>From your terminal type <code>git log</code> and review the results. This is log is your history of git commits. </p>
+</li>
+<li>
+<p>Notice how each commit lists the author, timestamp, and date. </p>
+</li>
+<li>
+<p>Notice how each commit has a unique alphanumeric identifier. This is the unique identifier for each separate commit.</p>
+</li>
+<li>
+<p>In your browser, refresh your <code>Hello_World</code> repository page. </p>
+</li>
+<li>
+<p>Click the icon that shows the number of commits in this repository
+     <img alt="number of commits icon" src="../3_commits_icon.png" /></p>
+</li>
+<li>Compare the results of your terminal's <code>git log</code> with what GitHub shows.</li>
+<li>In addition to providing code backup and collaboration tools, GitHub's service provides graphical web interfaces for Git repositories. </li>
+</ul>
+<h5 id="exercise-to-setup-or-restore-a-repository-from-github">Exercise to setup or restore a repository from GitHub</h5>
+<p>Let's simulate setting up an existing repository from GitHub on a new computer.</p>
+<ul>
+<li>Double check that your <code>Hello_World</code> repository exists on GitHub and has 3 commits and your <code>hello.txt</code> file.</li>
+<li>Open up Finder on your Mac. Run <code>Command + Shift + H</code> to pull up your <code>~/codeup-data-science</code> folder. Now delete your local <code>Hello_World</code> repo.</li>
+<li>In your terminal, run <code>cd ~/codeup-data-science</code> and run <code>ls -la</code>. Your local repo should no longer be there.</li>
+<li>Let's simulate restoring your work from GitHub.</li>
+<li>Inside of GitHub, click Code and then copy the SSH git clone address to your clipboard.
+    <img alt="" src="../git-clone-address.png" /></li>
+<li>From <code>~/codeup-data-science</code>, type <code>git clone</code>, space, and then paste the ssh clone address.</li>
+<li>Now type <code>ls -la</code>. Do you see a new local copy of the repo?</li>
+<li><code>cd  Hello_World</code></li>
+<li><code>ls -la</code> should show that all of your work is now restored from GitHub</li>
+</ul>
+<p>This exercise highlights the importance of commiting and pushing your code regularly. If you have a steady habit of both commiting and pushing your work to GitHub, restoring your work is direct. Imagine if this was more important work and if you had neglected to commit or push!</p>
+<h3 id="make-a-profile-readme-repo">Make a Profile README repo</h3>
+<ul>
+<li>
+<p>Follow the directions on https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/customizing-your-profile/managing-your-profile-readme to make a profile readme on GitHub.</p>
+</li>
+<li>
+<p>Use https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax as reference for learning + using markdown that will add structure, organization, and content to your profile readme.</p>
+</li>
+<li>
+<p>Take a few minutes to spice up your profile explaining why you're interested in data science and what you will be studying at Codeup.</p>
+</li>
+<li>
+<p>Whenever you have spare moments, add more to your GitHub profile readme</p>
+</li>
+<li>
+<p>If you need inspiration, check out https://zzetao.github.io/awesome-github-profile/</p>
+</li>
+<li>
+<p>You can make and share amazing content with markdown, links, and images!</p>
+</li>
+</ul>
+<h5 id="create-a-repository-for-your-notes">Create a repository for your notes</h5>
+<ol>
+<li>
+<p>Using the directions above, create a repository named <code>my_notes</code></p>
+<ul>
+<li>Create the repository on GitHub, first.</li>
+<li>Clone the repository down into your <code>~/codeup-data-science/</code> folder. </li>
+</ul>
+</li>
+<li>
+<p>Create a file named <code>notes.md</code> and inside of it add the following contents:</p>
+<div class="highlight"><pre><span></span><code># My DS Notes
+
+This is a repository for my notes
+</code></pre></div>
+</li>
+<li>
+<p>Add some text or bullet points about what you've learned about Git so far your <code>notes.md</code> file.</p>
+</li>
+<li>
+<p>After adding content, do you expect the repo's webpage to update with your changes?</p>
+</li>
+<li>
+<p>Add and commit your changes to the file. Now do you expect the webpage to update with your changes? What is missing?</p>
+</li>
+<li>
+<p>Push your work.</p>
+</li>
+<li>
+<p>Continue to add more content as you learn new things in the course. </p>
+</li>
+</ol>
+<h2 id="gitignore-exercises">Gitignore Exercises</h2>
+<h3 id="gitignore-exercise-1">Gitignore Exercise 1</h3>
+<ul>
+<li>Make a new remote and local repository named <code>git_practice</code></li>
+<li>Use VS Code to make new file called .gitignore (<code>code .gitignore</code>) (or use the Mac <code>TextEdit</code> application)</li>
+<li>Add <code>secrets.txt</code> as its own line.<ul>
+<li>The only line of text inside of <code>.gitignore</code> is <code>secrets.txt</code></li>
+<li>Save this file in VS Code.</li>
+<li>From your terminal and type <code>git add .gitignore</code></li>
+<li>Run <code>git commit -m "add secrets.txt to gitignore"</code></li>
+</ul>
+</li>
+<li>git status from your terminal to see what's red/green</li>
+<li><code>git add .gitignore</code></li>
+<li><code>git commit -m "Add secrets.txt to gitignore"</code></li>
+<li><code>git push</code></li>
+<li>Now Use VS Code to make new file called secrets.txt (<code>code secrets.txt</code>)<ul>
+<li>add a pretend username and pretend password</li>
+</ul>
+</li>
+<li><code>git status</code> to see what's red/green and the state of things</li>
+<li>Try to run <code>git add secrets.txt</code>. What do you see?</li>
+<li>Add this remote to your local repo.</li>
+<li>
+<p>Then push your work with git. </p>
+<ul>
+<li>What happens when you try to push without commiting?</li>
+</ul>
+</li>
+<li>
+<p>Finally, check your new repository on GitHub. Does secrets.txt show up? The only file should be the <code>.gitignore</code> file. </p>
+</li>
+</ul>
+<h3 id="gitignore-exercise-2">Gitignore Exercise 2</h3>
+<ul>
+<li>From your <code>~/codeup-data-science/git_practice</code> directory, open up your <code>.gitignore</code> file (use <code>code .gitignore</code></li>
+<li>Add the line more_secrets.txt to your .gitignore file</li>
+<li>Now do <code>git add .gitignore</code> and <code>git commit -m "add more_secrets to gitignore"</code></li>
+<li>Run git status </li>
+<li>Now use VS Code to create a file called <code>more_secrets.txt</code></li>
+<li>Run git status to see the state of things</li>
+<li>Now push your commit and check your repo on GitHub. What happed? What do you see?</li>
+</ul>
+<h3 id="gitignore-exercise-3">Gitignore Exercise 3</h3>
+<ul>
+<li>
+<p>Run <code>code ~/.gitignore_global</code> to open up your global gitignore file. Add the following lines:
+<div class="highlight"><pre><span></span><code>env.py
+.DS_Store
+.ipynb_checkpoints/
+__pycache__
+.vscode/
+</code></pre></div></p>
+</li>
+<li>
+<p>Next, run <code>git config --global core.excludesfile ~/.gitignore_global</code> from your terminal. </p>
+</li>
+<li>Now it's time to confirm that Exercise 3 is done.<ul>
+<li><code>cd ~/codeup-data-science/git_practice</code></li>
+<li><code>code env.py</code> to create an env.py. </li>
+<li>Inside of <code>env.py</code>, add the following lines
+    <div class="highlight"><pre><span></span><code>host = &quot;123.456.123.456&quot;
+username = &quot;example_username&quot;
+password = &quot;example_password&quot;
+</code></pre></div></li>
+<li>Save/exit VS code. </li>
+<li>Now do <code>git status</code></li>
+<li>Do you see that git is tracking your <code>env.py</code> file?</li>
+<li>If it's showing in <code>git status</code>, why is that the case? Double check any spelling in the filename and your global gitignore.</li>
+</ul>
+</li>
+</ul>
+<hr />
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Selecting any of these options would create a repository that already had
+the selected files in it, instead of an empty repository, so we would not be
+able to simply push our existing repository. We would have to first clone the
+repository and then add our changes and push, which is beyond the scope of this
+lesson.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.01824240.min.js"}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.e0abf5b0.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+        <script src="../../static-assets/fix-table-overflow.js"></script>
+      
+    
+  </body>
+</html>
